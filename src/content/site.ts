@@ -77,5 +77,9 @@ export const site = {
     mainNav: 'Main navigation',
     openMenu: 'Open menu',
     closeMenu: 'Close menu',
+    playVideo: 'Play video',
+    closeLightbox: 'Close viewer',
+    prevItem: 'Previous item',
+    nextItem: 'Next item',
   },
 };

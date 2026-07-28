@@ -17,6 +17,8 @@ cerrar cada ítem, indicando fecha y quién lo confirmó.
 - [ ] **Voz de marca** — el sitio actual mezcla plural ("We bring strategy...") con singular ("Let me immortalize your moments"). Decisión: unificar en plural. Confirmar con el cliente.
 - [ ] **Title/description SEO finales** — hay borradores razonables en `src/content/site.ts`, revisar con el cliente.
 - [ ] **URLs exactas de redes** (Instagram, TikTok, YouTube). (`src/content/site.ts`)
+- [ ] **Fotografía real** — las imágenes en `assets-raw/samples/` son gradientes placeholder generados; reemplazar con material del cliente.
+- [ ] **Video reel de Crevess** — IDs de YouTube/Vimeo para el hero y los demos (hoy hay un video de demo de Blender en el styleguide).
 
 ## Confirmado
 

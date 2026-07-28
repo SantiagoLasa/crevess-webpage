@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { MediaDemo } from './MediaDemo';
 import { AmbientGlow } from '@/components/ui/AmbientGlow';
 import { Button } from '@/components/ui/Button';
 import { Divider } from '@/components/ui/Divider';
@@ -303,6 +304,24 @@ export default function Styleguide() {
           </p>
           <div className="mt-8 max-w-[640px]">
             <Divider />
+          </div>
+        </div>
+      </section>
+
+      <Divider />
+
+      {/* ------------------------------------------------ Media */}
+      <section className="bg-linen">
+        <div className="mx-auto max-w-site px-6 py-24 md:px-10 md:py-40">
+          <Eyebrow>05 — Media</Eyebrow>
+          <p className="mt-6 max-w-[640px] text-body text-stone">
+            Pipeline de sharp: cada fuente en assets-raw/ genera variantes AVIF
+            + WebP + JPG en 480/768/1200/1920px con blur placeholder. Clic en
+            una imagen abre el Lightbox (flechas + Escape + swipe). El video es
+            un facade: el iframe recién carga al hacer play.
+          </p>
+          <div className="mt-10">
+            <MediaDemo />
           </div>
         </div>
       </section>

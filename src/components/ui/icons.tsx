@@ -46,6 +46,30 @@ export function YouTubeIcon(props: IconProps) {
   );
 }
 
+export function PlayIcon(props: IconProps) {
+  return (
+    <svg {...iconDefaults(props)}>
+      <path d="M8.5 5.5l10 6.5-10 6.5z" />
+    </svg>
+  );
+}
+
+export function ChevronLeftIcon(props: IconProps) {
+  return (
+    <svg {...iconDefaults(props)}>
+      <path d="M14.5 5.5L8 12l6.5 6.5" />
+    </svg>
+  );
+}
+
+export function ChevronRightIcon(props: IconProps) {
+  return (
+    <svg {...iconDefaults(props)}>
+      <path d="M9.5 5.5L16 12l-6.5 6.5" />
+    </svg>
+  );
+}
+
 export function MenuIcon(props: IconProps) {
   return (
     <svg {...iconDefaults(props)}>

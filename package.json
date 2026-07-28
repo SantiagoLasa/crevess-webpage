@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "images": "node scripts/optimize-images.mjs",
+    "build": "node scripts/optimize-images.mjs && next build",
     "lint": "next lint"
   },
   "dependencies": {
@@ -16,6 +17,7 @@
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.0",
     "@types/node": "^24.0.0",
+    "sharp": "^0.34.0",
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.0",
     "tailwindcss": "^4.1.0",

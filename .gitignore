@@ -5,6 +5,9 @@
 /.next/
 /out/
 
+# generado por scripts/optimize-images.mjs (se regenera en cada build)
+/public/media/
+
 # misc
 .DS_Store
 *.pem
