@@ -33,6 +33,24 @@ export const categoryLabels: Record<WorkCategory, string> = {
   video: 'Video Storytelling',
 };
 
+export const portfolioPage = {
+  seo: {
+    title: 'Portfolio',
+    description:
+      'Selected work by Crevess — social media, content creation, events and video storytelling for brands that lead with image.',
+  },
+  hero: {
+    eyebrow: 'Portfolio',
+    // TODO: CONTENIDO CLIENTE — BORRADOR
+    headline: 'Every brand has a golden hour',
+    italic: 'golden',
+    intro:
+      'A curated selection across social media management, content, events and film.',
+  },
+  allLabel: 'All',
+  emptyState: 'No work in this category yet.',
+};
+
 export const work: WorkItem[] = [
   {
     id: 'work-01',
@@ -68,6 +86,34 @@ export const work: WorkItem[] = [
     category: 'events',
     image: 'work/work-05',
     alt: 'Placeholder — pieza de portfolio vertical en ámbar y espresso',
+  },
+  {
+    id: 'work-06',
+    title: 'Hospitality — Vertical Reel',
+    category: 'video',
+    image: 'work/work-06',
+    alt: 'Placeholder — pieza vertical 9:16 en espresso y dorado',
+  },
+  {
+    id: 'work-07',
+    title: 'Beauty — Feed Refresh',
+    category: 'social',
+    image: 'work/work-07',
+    alt: 'Placeholder — pieza apaisada en tonos claros y cobre',
+  },
+  {
+    id: 'work-08',
+    title: 'Events — Private Dinner',
+    category: 'events',
+    image: 'work/work-08',
+    alt: 'Placeholder — pieza cuadrada en arena y espresso',
+  },
+  {
+    id: 'work-09',
+    title: 'Lifestyle — Look & Feel',
+    category: 'content',
+    image: 'work/work-09',
+    alt: 'Placeholder — pieza 4:5 en tonos tierra profundos',
   },
 ];
 
