@@ -12,8 +12,8 @@ import { Button } from '../ui/Button';
 import { CloseIcon, MenuIcon } from '../ui/icons';
 
 // Rutas con hero oscuro a pantalla completa: ahí el Nav arranca transparente
-// con texto --bone. Agregar '/about' en fase 5 cuando exista su hero.
-const DARK_HERO_ROUTES = ['/'];
+// con texto --bone.
+const DARK_HERO_ROUTES = ['/', '/about'];
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 

@@ -6,19 +6,20 @@ import { Reveal } from '../ui/Reveal';
 import { WithItalic } from '../ui/WithItalic';
 
 // Tres pilares: Creation · Vision · Essence. La numeración es una secuencia
-// metodológica real, por eso se justifica el 01/02/03.
-export function CrevessCode() {
+// metodológica real, por eso se justifica el 01/02/03. About pasa su propia
+// versión expandida via `content`.
+export function CrevessCode({ content = home.code }: { content?: typeof home.code }) {
   return (
     <Section>
       <Container>
         <Reveal>
-          <Eyebrow>{home.code.eyebrow}</Eyebrow>
+          <Eyebrow>{content.eyebrow}</Eyebrow>
           <h2 className="mt-6 max-w-[20ch] font-display text-display-l">
-            <WithItalic text={home.code.headline} italic={home.code.italic} />
+            <WithItalic text={content.headline} italic={content.italic} />
           </h2>
         </Reveal>
         <div className="mt-16 grid grid-cols-1 gap-12 md:grid-cols-3">
-          {home.code.pillars.map((pillar, i) => (
+          {content.pillars.map((pillar, i) => (
             <Reveal key={pillar.title} delay={i * 0.08}>
               <div className="border-t border-gold pt-8">
                 <p className="font-display text-display-m text-sand">{pillar.number}</p>
