@@ -95,6 +95,22 @@
   }
 }
 
+/* Marquesina de clientes — la única animación en loop permitida (sección 9).
+   El kill-switch de prefers-reduced-motion de abajo también la detiene. */
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  animation: marquee 40s linear infinite;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

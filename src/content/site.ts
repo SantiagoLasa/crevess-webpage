@@ -72,6 +72,13 @@ export const site = {
     ],
   },
 
+  // Bloque reutilizable al final de cada página.
+  ctaBand: {
+    headline: 'Ready to elevate your brand?',
+    italic: 'elevate',
+    subtitle: 'Let’s build it — strategically.',
+  },
+
   a11y: {
     skipToContent: 'Skip to content',
     mainNav: 'Main navigation',
