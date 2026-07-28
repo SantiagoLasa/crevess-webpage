@@ -79,6 +79,8 @@
     color: var(--espresso);
     font-family: var(--font-satoshi), system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
+    /* Los AmbientGlow sangran fuera del canvas: nunca scroll horizontal. */
+    overflow-x: clip;
   }
 
   ::selection {

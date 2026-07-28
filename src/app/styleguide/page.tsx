@@ -1,4 +1,8 @@
 import type { Metadata } from 'next';
+import { AmbientGlow } from '@/components/ui/AmbientGlow';
+import { Button } from '@/components/ui/Button';
+import { Divider } from '@/components/ui/Divider';
+import { Eyebrow } from '@/components/ui/Eyebrow';
 
 // Página interna de aprobación del sistema de diseño (fase 1).
 // No es contenido del sitio: las anotaciones en español son para revisión
@@ -39,22 +43,6 @@ const typeSpecs = [
   { name: 'eyebrow', spec: 'Satoshi 500 · 0.6875rem · versalitas · ls 0.14em' },
 ];
 
-function Eyebrow({ children }: { children: React.ReactNode }) {
-  return <p className="text-eyebrow uppercase text-gold">{children}</p>;
-}
-
-function Divider() {
-  return (
-    <div
-      aria-hidden
-      className="h-px w-full"
-      style={{
-        background: 'linear-gradient(90deg, transparent, var(--gold), transparent)',
-      }}
-    />
-  );
-}
-
 function SpecLabel({ name, spec }: { name: string; spec: string }) {
   return (
     <p className="text-caption text-stone">
@@ -93,16 +81,7 @@ export default function Styleguide() {
     <main className="overflow-x-clip">
       {/* ------------------------------------------------ Portada */}
       <header className="relative">
-        {/* Preview del elemento signature <AmbientGlow /> (componente real en fase 2) */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute -top-52 -right-52 -z-10 h-[700px] w-[700px]"
-          style={{
-            background:
-              'radial-gradient(circle at center, rgba(240,154,56,0.28) 0%, rgba(226,98,47,0.10) 40%, transparent 70%)',
-            filter: 'blur(80px)',
-          }}
-        />
+        <AmbientGlow size={700} className="-top-52 -right-52" />
         <div className="mx-auto max-w-site px-6 py-24 md:px-10 md:py-40">
           <Eyebrow>Crevess — Sistema de diseño</Eyebrow>
           <h1 className="mt-6 font-display text-display-xl">
@@ -275,34 +254,21 @@ export default function Styleguide() {
       <Divider />
 
       {/* ------------------------------------------------ Detalles */}
-      <section>
+      <section id="detalles">
         <div className="mx-auto max-w-site px-6 py-24 md:px-10 md:py-40">
           <Eyebrow>04 — Detalles</Eyebrow>
 
           <h2 className="mt-6 font-display text-display-m">Botones</h2>
           <p className="mt-3 text-caption text-stone">
-            Previews estáticos — los componentes reales llegan en fase 2. Radio
-            2px, hover solo de color, 200ms. Tab para ver el anillo de foco.
+            Componentes reales de fase 2. Radio 2px, hover solo de color,
+            200ms. Tab para ver el anillo de foco.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-6">
-            <button
-              type="button"
-              className="rounded-[2px] bg-ember px-7 py-3.5 text-body font-medium text-bone transition-colors duration-200 hover:bg-amber"
-            >
-              Book a Strategy Call
-            </button>
-            <button
-              type="button"
-              className="rounded-[2px] border border-sand px-7 py-3.5 text-body font-medium text-espresso transition-colors duration-200 hover:border-gold"
-            >
-              View Our Work
-            </button>
-            <a
-              href="#"
-              className="bg-no-repeat text-body font-medium text-espresso transition-[background-size] duration-300 [background-image:linear-gradient(var(--gold),var(--gold))] [background-position:0_100%] [background-size:0%_1px] hover:[background-size:100%_1px]"
-            >
+            <Button>Book a Strategy Call</Button>
+            <Button variant="secondary">View Our Work</Button>
+            <Button variant="tertiary" href="#detalles">
               Read the story
-            </a>
+            </Button>
           </div>
 
           <h2 className="mt-20 font-display text-display-m">Sombra y radios</h2>

@@ -44,4 +44,38 @@ export const site = {
     tiktok: null as string | null,
     youtube: null as string | null,
   },
+
+  footer: {
+    columns: [
+      {
+        title: 'Quick Links',
+        links: [
+          { label: 'Portfolio', href: '/portfolio' },
+          { label: 'Services', href: '/services' },
+          { label: 'About', href: '/about' },
+        ],
+      },
+      {
+        title: 'Resources',
+        links: [{ label: 'Magazine', href: '/magazine' }],
+      },
+      {
+        title: 'Connect',
+        links: [{ label: 'Contact', href: '/contact' }],
+      },
+    ],
+    contactTitle: 'Contact Us',
+    rights: 'All rights reserved.',
+    legal: [
+      { label: 'Privacy Policy', href: '/privacy' },
+      { label: 'Terms of Service', href: '/terms' },
+    ],
+  },
+
+  a11y: {
+    skipToContent: 'Skip to content',
+    mainNav: 'Main navigation',
+    openMenu: 'Open menu',
+    closeMenu: 'Close menu',
+  },
 };
