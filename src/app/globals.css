@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   Tokens — sección 2.2 del brief. Toda decisión visual deriva de acá.
+   --------------------------------------------------------------------------- */
+:root {
+  /* Superficies */
+  --bone: #FBF7F1;      /* fondo de página */
+  --linen: #F2EAE0;     /* secciones alternas, cards */
+  --sand: #E0D2C0;      /* bordes, divisores, fills apagados */
+
+  /* Acentos */
+  --gold: #B8935A;      /* filetes hairline, versalitas, trazos de iconos */
+  --gold-lt: #D9BC8B;   /* estados hover del dorado */
+  --amber: #F09A38;     /* naranja de marca */
+  --ember: #E2622F;     /* CTA, extremo profundo del gradiente */
+
+  /* Tinta */
+  --espresso: #241C16;  /* titulares, footer. NUNCA #000 */
+  --stone: #6F6257;     /* texto de cuerpo secundario */
+
+  /* Gradiente de marca — derivado del isotipo */
+  --glow: linear-gradient(135deg, #F7C56B 0%, #F09A38 45%, #E2622F 100%);
+}
+
+/* Mapeo de tokens a utilidades Tailwind (bg-bone, text-espresso, etc.) */
+@theme inline {
+  --color-bone: var(--bone);
+  --color-linen: var(--linen);
+  --color-sand: var(--sand);
+  --color-gold: var(--gold);
+  --color-gold-lt: var(--gold-lt);
+  --color-amber: var(--amber);
+  --color-ember: var(--ember);
+  --color-espresso: var(--espresso);
+  --color-stone: var(--stone);
+
+  --font-display: var(--font-instrument-serif), Georgia, serif;
+  --font-sans: var(--font-satoshi), system-ui, sans-serif;
+}
+
+@theme {
+  /* Escala tipográfica fluida — sección 2.3 */
+  --text-display-xl: clamp(3rem, 9vw, 7.5rem);
+  --text-display-xl--line-height: 0.92;
+  --text-display-xl--letter-spacing: -0.03em;
+
+  --text-display-l: clamp(2.25rem, 6vw, 4.5rem);
+  --text-display-l--line-height: 0.98;
+  --text-display-l--letter-spacing: -0.02em;
+
+  --text-display-m: clamp(1.75rem, 4vw, 2.75rem);
+  --text-display-m--line-height: 1.08;
+
+  --text-body-l: 1.125rem;
+  --text-body-l--line-height: 1.6;
+
+  --text-body: 1rem;
+  --text-body--line-height: 1.65;
+
+  --text-caption: 0.8125rem;
+  --text-caption--line-height: 1.5;
+
+  --text-eyebrow: 0.6875rem;
+  --text-eyebrow--line-height: 1.2;
+  --text-eyebrow--letter-spacing: 0.14em;
+  --text-eyebrow--font-weight: 500;
+
+  /* Contenedor máximo — sección 2.4 */
+  --container-site: 1320px;
+
+  /* La única sombra permitida — sección 2.4 */
+  --shadow-soft: 0 24px 60px -20px rgba(36, 28, 22, 0.18);
+}
+
+@layer base {
+  body {
+    background-color: var(--bone);
+    color: var(--espresso);
+    font-family: var(--font-satoshi), system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background-color: var(--sand);
+    color: var(--espresso);
+  }
+
+  /* Foco visible obligatorio — sección 8. No eliminar sin reemplazo. */
+  *:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
