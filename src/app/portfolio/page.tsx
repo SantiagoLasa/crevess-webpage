@@ -7,6 +7,11 @@ import { PortfolioGrid } from '@/components/sections/PortfolioGrid';
 export const metadata: Metadata = {
   title: portfolioPage.seo.title,
   description: portfolioPage.seo.description,
+  alternates: { canonical: '/portfolio/' },
+  openGraph: {
+    url: '/portfolio/',
+    images: [{ url: '/og/portfolio.jpg', width: 1200, height: 630 }],
+  },
 };
 
 export default function PortfolioPage() {

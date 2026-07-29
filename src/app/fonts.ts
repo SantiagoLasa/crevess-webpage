@@ -1,6 +1,8 @@
 import localFont from 'next/font/local';
 
 // Display — Instrument Serif (Google Fonts, OFL). Autoalojada, sin CDN externo.
+// adjustFontFallback genera un fallback serif con métricas ajustadas: si la
+// fuente llega tarde, el swap no mueve el layout.
 export const instrumentSerif = localFont({
   src: [
     {
@@ -16,6 +18,7 @@ export const instrumentSerif = localFont({
   ],
   variable: '--font-instrument-serif',
   display: 'swap',
+  adjustFontFallback: 'Times New Roman',
 });
 
 // Cuerpo / UI — Satoshi (Fontshare, ITF Free Font License). Autoalojada.

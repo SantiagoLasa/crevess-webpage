@@ -9,6 +9,11 @@ import { ReelStrip } from '@/components/sections/ReelStrip';
 export const metadata: Metadata = {
   title: contact.seo.title,
   description: contact.seo.description,
+  alternates: { canonical: '/contact/' },
+  openGraph: {
+    url: '/contact/',
+    images: [{ url: '/og/contact.jpg', width: 1200, height: 630 }],
+  },
 };
 
 export default function ContactPage() {

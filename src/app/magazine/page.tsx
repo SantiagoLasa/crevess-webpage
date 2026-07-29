@@ -12,6 +12,11 @@ import { CtaBand } from '@/components/sections/CtaBand';
 export const metadata: Metadata = {
   title: magazinePage.seo.title,
   description: magazinePage.seo.description,
+  alternates: { canonical: '/magazine/' },
+  openGraph: {
+    url: '/magazine/',
+    images: [{ url: '/og/magazine.jpg', width: 1200, height: 630 }],
+  },
 };
 
 export default function MagazinePage() {

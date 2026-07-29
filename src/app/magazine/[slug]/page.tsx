@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { compileMDX } from 'next-mdx-remote/rsc';
 import { magazinePage } from '@/content/magazine-page';
+import { site } from '@/content/site';
 import {
   formatDate,
   getAllArticles,
@@ -29,7 +30,18 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const { meta } = getArticle(slug);
-  return { title: meta.title, description: meta.excerpt };
+  return {
+    title: meta.title,
+    description: meta.excerpt,
+    alternates: { canonical: `/magazine/${slug}/` },
+    openGraph: {
+      type: 'article',
+      url: `/magazine/${slug}/`,
+      publishedTime: `${meta.date}T00:00:00Z`,
+      // La cover 16:9 de 1200px como OG del artículo.
+      images: [{ url: `/media/${meta.cover}-1200.jpg`, width: 1200, height: 675 }],
+    },
+  };
 }
 
 export default async function ArticlePage({
@@ -42,8 +54,28 @@ export default async function ArticlePage({
   const related = getRelated(slug);
   const { content } = await compileMDX({ source, components: mdxComponents });
 
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: meta.title,
+    description: meta.excerpt,
+    datePublished: `${meta.date}T00:00:00Z`,
+    image: `${site.url}/media/${meta.cover}-1200.jpg`,
+    author: { '@type': 'Organization', name: meta.author },
+    publisher: {
+      '@type': 'Organization',
+      name: site.name,
+      logo: { '@type': 'ImageObject', url: `${site.url}/og/logo.png` },
+    },
+    mainEntityOfPage: `${site.url}/magazine/${slug}/`,
+  };
+
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
       {/* Layout editorial de una columna, medida 680px */}
       <article className="pb-24 pt-16 md:pb-40 md:pt-24">
         <Container>

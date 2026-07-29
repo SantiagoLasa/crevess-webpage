@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "images": "node scripts/optimize-images.mjs",
-    "build": "node scripts/optimize-images.mjs && next build",
+    "og": "node scripts/generate-og.mjs",
+    "build": "node scripts/optimize-images.mjs && node scripts/generate-og.mjs && next build",
     "lint": "next lint"
   },
   "dependencies": {

@@ -1,0 +1,13 @@
+# Redirecciones 301 desde las rutas del WordPress viejo (formato Cloudflare Pages).
+# TODO: CONTENIDO CLIENTE — confirmar la lista real de URLs del sitio actual
+# (exportar desde el sitemap del WordPress antes de darlo de baja).
+# Mapeos típicos de WordPress como punto de partida:
+/about-us /about/ 301
+/contact-us /contact/ 301
+/our-services /services/ 301
+/services-2 /services/ 301
+/blog /magazine/ 301
+/blog/* /magazine/ 301
+
+# Las rutas de spam inyectadas devuelven 410 Gone via functions/[[path]].ts
+# (el formato _redirects de Cloudflare no soporta el código 410).

@@ -95,6 +95,32 @@
   }
 }
 
+/* Cascada de entrada del hero — CSS puro para no atar el LCP a la
+   hidratación de JS: anima desde el primer paint. El flag de "una sola vez
+   por sesión" vive en el componente Hero. */
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.hero-intro {
+  animation: hero-rise 600ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero-intro-2 {
+  animation-delay: 120ms;
+}
+
+.hero-intro-3 {
+  animation-delay: 240ms;
+}
+
 /* Marquesina de clientes — la única animación en loop permitida (sección 9).
    El kill-switch de prefers-reduced-motion de abajo también la detiene. */
 @keyframes marquee {

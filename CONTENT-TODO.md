@@ -17,8 +17,12 @@ cerrar cada ítem, indicando fecha y quién lo confirmó.
 - [ ] **Voz de marca** — el sitio actual mezcla plural ("We bring strategy...") con singular ("Let me immortalize your moments"). Decisión: unificar en plural. Confirmar con el cliente.
 - [ ] **Title/description SEO finales** — hay borradores razonables en `src/content/site.ts`, revisar con el cliente.
 - [ ] **URLs exactas de redes** (Instagram, TikTok, YouTube). (`src/content/site.ts`)
-- [ ] **Fotografía real** — las imágenes en `assets-raw/samples/` son gradientes placeholder generados; reemplazar con material del cliente.
+- [ ] **Fotografía real** — las imágenes en `assets-raw/` son gradientes placeholder generados; reemplazar con material del cliente.
 - [ ] **Video reel de Crevess** — IDs de YouTube/Vimeo para el hero y los demos (hoy hay un video de demo de Blender en el styleguide).
+- [ ] **Dominio definitivo** — `site.url` asume `https://crevess.com`; confirmar antes del deploy. (`src/content/site.ts`)
+- [ ] **Rutas reales del WordPress viejo** — exportar el sitemap del sitio actual y completar los 301 en `public/_redirects` (hoy hay mapeos típicos de WP como punto de partida).
+- [ ] **Rangos de presupuesto del formulario** — confirmar los 4 rangos en `src/content/contact.ts`.
+- [ ] **Claves de producción** — RESEND_API_KEY, TURNSTILE_SECRET_KEY, CONTACT_TO_EMAIL, CONTACT_FROM_EMAIL y NEXT_PUBLIC_TURNSTILE_SITE_KEY en Cloudflare Pages (ver `.env.example`).
 
 ## Confirmado
 

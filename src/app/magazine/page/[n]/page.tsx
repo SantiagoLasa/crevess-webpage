@@ -28,7 +28,7 @@ export async function generateMetadata({
   return {
     title: magazinePage.seo.title,
     description: magazinePage.seo.description,
-    alternates: { canonical: n === '1' ? '/magazine' : `/magazine/page/${n}` },
+    alternates: { canonical: n === '1' ? '/magazine/' : `/magazine/page/${n}/` },
   };
 }
 

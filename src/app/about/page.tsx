@@ -12,6 +12,11 @@ import { Divider } from '@/components/ui/Divider';
 export const metadata: Metadata = {
   title: about.seo.title,
   description: about.seo.description,
+  alternates: { canonical: '/about/' },
+  openGraph: {
+    url: '/about/',
+    images: [{ url: '/og/about.jpg', width: 1200, height: 630 }],
+  },
 };
 
 export default function AboutPage() {

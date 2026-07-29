@@ -4,6 +4,8 @@
 export const site = {
   name: 'Crevess',
   location: 'Miami, FL',
+  // TODO: CONTENIDO CLIENTE — confirmar dominio definitivo
+  url: 'https://crevess.com',
 
   seo: {
     // TODO: CONTENIDO CLIENTE — revisar title/description finales con el cliente
