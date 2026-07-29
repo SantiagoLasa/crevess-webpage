@@ -4,6 +4,7 @@ import { site } from '@/content/site';
 import { MotionProvider } from '@/components/layout/MotionProvider';
 import { Nav } from '@/components/layout/Nav';
 import { Footer } from '@/components/layout/Footer';
+import { WhatsAppButton } from '@/components/layout/WhatsAppButton';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -30,6 +31,7 @@ export default function RootLayout({
           <Nav />
           <div id="content">{children}</div>
           <Footer />
+          <WhatsAppButton />
         </MotionProvider>
       </body>
     </html>

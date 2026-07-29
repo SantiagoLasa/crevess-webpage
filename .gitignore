@@ -21,3 +21,4 @@ next-env.d.ts
 # env — las claves van en Cloudflare, nunca en el repo
 .env
 .env.*
+!.env.example
