@@ -9,5 +9,5 @@
 /blog /magazine/ 301
 /blog/* /magazine/ 301
 
-# Las rutas de spam inyectadas devuelven 410 Gone via functions/[[path]].ts
+# Las rutas de spam inyectadas devuelven 410 Gone via worker/index.ts
 # (el formato _redirects de Cloudflare no soporta el código 410).

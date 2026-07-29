@@ -22,14 +22,19 @@ pnpm build    # imágenes + OG + next build → out/
 
 No correr `pnpm build` con `pnpm dev` activo: comparten `.next/`.
 
-## Deploy — Cloudflare Pages
+## Deploy — Cloudflare Workers (static assets)
+
+Proyecto de Workers Builds conectado al repo. `wrangler.jsonc` define el
+Worker `crevess`: sirve `out/` como assets estáticos (con `_redirects`
+nativo) y [worker/index.ts](worker/index.ts) maneja `/api/contact` y los
+410 de rutas de spam.
 
 - **Build command:** `pnpm build`
-- **Output directory:** `out`
-- **Functions:** `/functions` se despliega solo (formulario de contacto + 410
-  de rutas de spam).
-- **Variables de entorno:** ver [.env.example](.env.example) — claves de
-  Resend y Turnstile, correos de destino/remitente. Nunca en el repo.
+- **Deploy command:** `npx wrangler deploy`
+- **Variables de entorno:** ver [.env.example](.env.example). Las del
+  formulario van en el Worker (Settings → Variables and Secrets);
+  `NEXT_PUBLIC_TURNSTILE_SITE_KEY` va en las variables de *build*.
+  Nunca en el repo.
 
 ## Contenido
 

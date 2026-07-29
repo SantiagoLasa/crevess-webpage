@@ -1,0 +1,17 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  // Debe coincidir con el nombre del Worker existente en Cloudflare.
+  "name": "crevess",
+  "main": "worker/index.ts",
+  "compatibility_date": "2026-07-29",
+  "assets": {
+    // Salida del export estático de Next (pnpm build).
+    "directory": "./out",
+    "binding": "ASSETS",
+    // Rutas sin asset ni handler → 404.html del export.
+    "not_found_handling": "404-page"
+  },
+  "observability": {
+    "enabled": true
+  }
+}

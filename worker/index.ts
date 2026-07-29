@@ -1,40 +1,41 @@
-// Cloudflare Pages Function — POST /api/contact
-// Independiente del build de Next (modo export). Cloudflare la compila y
-// despliega como Worker automáticamente por vivir en /functions.
+// Worker de Crevess — corre solo para requests que NO matchean un asset
+// estático (los assets de ./out se sirven primero, igual que en Pages).
 //
-// Flujo: valida payload (zod, mismo schema del cliente) → honeypot →
-// rate limit por IP → verificación Turnstile → Resend (correo al equipo +
-// acuse al visitante).
+// Responsabilidades:
+//   1. POST /api/contact — formulario: valida (zod, mismo schema del
+//      cliente), honeypot, rate limit por IP, Turnstile y Resend.
+//   2. Rutas de spam del WordPress viejo → 410 Gone (Google las purga
+//      más rápido que con 404).
+//   3. Todo lo demás → 404.html del export via el binding de assets.
 //
-// Env vars (Cloudflare Pages → Settings → Environment variables):
-//   RESEND_API_KEY        — API key de Resend
-//   TURNSTILE_SECRET_KEY  — secreto de Turnstile (si falta, se omite la
-//                           verificación: útil en previews, nunca en prod)
-//   CONTACT_TO_EMAIL      — bandeja del equipo
-//   CONTACT_FROM_EMAIL    — remitente verificado en Resend
-// Nunca en el repo, nunca con prefijo NEXT_PUBLIC_.
+// Env vars (Worker → Settings → Variables and Secrets):
+//   RESEND_API_KEY, TURNSTILE_SECRET_KEY, CONTACT_TO_EMAIL,
+//   CONTACT_FROM_EMAIL. Nunca en el repo.
 
-import { contactSchema } from '../../src/lib/contact-schema';
+import { contactSchema } from '../src/lib/contact-schema';
 
 type Env = {
+  ASSETS: { fetch: (request: Request) => Promise<Response> };
   RESEND_API_KEY?: string;
   TURNSTILE_SECRET_KEY?: string;
   CONTACT_TO_EMAIL?: string;
   CONTACT_FROM_EMAIL?: string;
 };
 
-type PagesContext = {
-  request: Request;
-  env: Env;
-};
+const SPAM_PREFIXES = [
+  '/disonanciamexicana.org',
+  '/ecosh.org',
+  '/sanamares.es',
+  '/azafrandelpirineo.es',
+  '/hackathonrural.es',
+];
 
 const MAX_BODY_BYTES = 10_000;
 const RATE_LIMIT = 5;
 const RATE_WINDOW_MS = 60 * 60 * 1000;
 
 // Rate limit en memoria del isolate: suficiente como primera barrera (se
-// resetea en cold starts). Para garantías duras, sumar una regla WAF de
-// Cloudflare o un binding KV.
+// resetea en cold starts). Para garantías duras, sumar una regla WAF o KV.
 const hits = new Map<string, number[]>();
 
 function rateLimited(ip: string): boolean {
@@ -47,7 +48,6 @@ function rateLimited(ip: string): boolean {
   }
   recent.push(now);
   hits.set(ip, recent);
-  // Limpieza oportunista para no crecer sin límite.
   if (hits.size > 5000) {
     for (const [key, times] of hits) {
       if (times.every((t) => t <= windowStart)) hits.delete(key);
@@ -105,8 +105,7 @@ async function sendEmail(
   return res.ok;
 }
 
-export async function onRequestPost(context: PagesContext): Promise<Response> {
-  const { request, env } = context;
+async function handleContact(request: Request, env: Env): Promise<Response> {
   const ip = request.headers.get('CF-Connecting-IP') ?? 'unknown';
 
   const raw = await request.text();
@@ -176,3 +175,25 @@ export async function onRequestPost(context: PagesContext): Promise<Response> {
 
   return json(200, { ok: true });
 }
+
+export default {
+  async fetch(request: Request, env: Env): Promise<Response> {
+    const { pathname } = new URL(request.url);
+
+    if (pathname === '/api/contact') {
+      if (request.method !== 'POST') {
+        return json(405, { ok: false, error: 'invalid' });
+      }
+      return handleContact(request, env);
+    }
+
+    if (SPAM_PREFIXES.some((p) => pathname === p || pathname.startsWith(`${p}/`))) {
+      return new Response('Gone', {
+        status: 410,
+        headers: { 'Content-Type': 'text/plain' },
+      });
+    }
+
+    return env.ASSETS.fetch(request);
+  },
+};
