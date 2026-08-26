@@ -14,13 +14,29 @@
   --gold-lt: #D9BC8B;   /* estados hover del dorado */
   --amber: #F09A38;     /* naranja de marca */
   --ember: #E2622F;     /* CTA, extremo profundo del gradiente */
+  --gold-highlight: #F7C56B; /* stop más claro del glow — resalte de luz */
 
   /* Tinta */
   --espresso: #241C16;  /* titulares, footer. NUNCA #000 */
   --stone: #6F6257;     /* texto de cuerpo secundario */
 
   /* Gradiente de marca — derivado del isotipo */
-  --glow: linear-gradient(135deg, #F7C56B 0%, #F09A38 45%, #E2622F 100%);
+  --glow: linear-gradient(135deg, var(--gold-highlight) 0%, var(--amber) 45%, var(--ember) 100%);
+
+  /* Derivados con transparencia — todo color con alpha sale de un token
+     base via color-mix(), nunca un rgba(...) literal duplicado. */
+  --nav-scrim: color-mix(in srgb, var(--bone) 88%, transparent);
+  --hero-overlay: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--espresso) 55%, transparent),
+    color-mix(in srgb, var(--espresso) 25%, transparent)
+  );
+  --ambient-glow: radial-gradient(
+    circle at center,
+    color-mix(in srgb, var(--amber) 28%, transparent) 0%,
+    color-mix(in srgb, var(--ember) 10%, transparent) 40%,
+    transparent 70%
+  );
 }
 
 /* Mapeo de tokens a utilidades Tailwind (bg-bone, text-espresso, etc.) */
@@ -70,7 +86,7 @@
   --container-site: 1320px;
 
   /* La única sombra permitida — sección 2.4 */
-  --shadow-soft: 0 24px 60px -20px rgba(36, 28, 22, 0.18);
+  --shadow-soft: 0 24px 60px -20px color-mix(in srgb, var(--espresso) 18%, transparent);
 }
 
 @layer base {

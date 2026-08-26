@@ -68,10 +68,7 @@ export function Hero() {
       <div
         aria-hidden
         className="absolute inset-0"
-        style={{
-          background:
-            'linear-gradient(180deg, rgba(36,28,22,0.55), rgba(36,28,22,0.25))',
-        }}
+        style={{ background: 'var(--hero-overlay)' }}
       />
 
       <Container className="relative z-10 pt-20">

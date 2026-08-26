@@ -27,8 +27,7 @@ export function AmbientGlow({ size = 760, className }: AmbientGlowProps) {
         width: size,
         height: size,
         y,
-        background:
-          'radial-gradient(circle at center, rgba(240,154,56,0.28) 0%, rgba(226,98,47,0.10) 40%, transparent 70%)',
+        background: 'var(--ambient-glow)',
         filter: 'blur(80px)',
       }}
     />

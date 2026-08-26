@@ -11,9 +11,9 @@ export function LogoMark({ className }: { className?: string }) {
     <svg viewBox="0 0 48 48" className={cn('block', className)} aria-hidden>
       <defs>
         <linearGradient id={gradId} x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#F7C56B" />
-          <stop offset="45%" stopColor="#F09A38" />
-          <stop offset="100%" stopColor="#E2622F" />
+          <stop offset="0%" style={{ stopColor: 'var(--gold-highlight)' }} />
+          <stop offset="45%" style={{ stopColor: 'var(--amber)' }} />
+          <stop offset="100%" style={{ stopColor: 'var(--ember)' }} />
         </linearGradient>
       </defs>
       <circle cx="24" cy="24" r="24" fill={`url(#${gradId})`} />

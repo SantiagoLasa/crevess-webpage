@@ -57,7 +57,7 @@ export function Nav() {
       <header
         className={cn(
           'fixed inset-x-0 top-0 z-50 transition-[background-color,box-shadow] duration-300',
-          scrolled && 'bg-[rgba(251,247,241,0.88)] backdrop-blur-[12px]',
+          scrolled && 'bg-[var(--nav-scrim)] backdrop-blur-[12px]',
         )}
       >
         <Container>
